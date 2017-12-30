@@ -107,6 +107,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Tell Django about the custom `User` model we created. The string
+# `authentication.User` tells Django we are referring to the `User` model in
+# the `authentication` module. This module is registered above in a setting
+# called `INSTALLED_APPS`.
+AUTH_USER_MODEL = 'authentication.USER'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
