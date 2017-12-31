@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework import generics, mixins, status, viewsets
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
@@ -12,6 +13,7 @@ from .serializers import ArticleSerializer, CommentSerializer
 class ArticleViewSet(mixins.CreateModelMixin,
                      mixins.ListModelMixin,
                      mixins.RetrieveModelMixin,
+                     mixins.DestroyModelMixin,
                      viewsets.GenericViewSet):
     lookup_field = 'slug'
     queryset = Article.objects.select_related('author', 'author__user')
@@ -56,6 +58,17 @@ class ArticleViewSet(mixins.CreateModelMixin,
         serializer.save()
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def destroy(self, request, slug=None):
+        try:
+            article = self.queryset.get(slug=slug)
+        except Article.DoesNotExist:
+            raise NotFound('An article with this slug does not exist.')
+
+        self.check_object_permissions(request, article)
+        article.delete()
+
+        return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
 
 class CommentsListCreateAPIView(generics.ListCreateAPIView):

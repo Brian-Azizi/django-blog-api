@@ -63,7 +63,7 @@
 					},
 					"response": [
 						{
-							"id": "67b0dcec-316d-411a-9baf-afdc2ae6f032",
+							"id": "9f357e31-e5a8-4060-a817-469e7b4098e1",
 							"name": "Register",
 							"originalRequest": {
 								"method": "POST",
@@ -163,7 +163,7 @@
 							"body": "{\"email\":\"brianazizi7@gmail.com\",\"username\":\"Corvo\",\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjoxNTE5NTY4MDYxfQ.B7Qfchsy-z7Bkvo_N6PMyrNmcTHI3aF0Wcn5aUiXBGQ\"}"
 						},
 						{
-							"id": "d43522d4-8ddc-448c-9a0e-5ffe0af08581",
+							"id": "501f164a-376c-4cfc-a8fe-722a53109921",
 							"name": "Register",
 							"originalRequest": {
 								"method": "POST",
@@ -320,7 +320,7 @@
 					},
 					"response": [
 						{
-							"id": "7422a2c2-2f7a-49af-a12a-3ed68ba08528",
+							"id": "97f7a0bd-c15f-4212-b168-226bbd4ff892",
 							"name": "Login",
 							"originalRequest": {
 								"method": "POST",
@@ -457,7 +457,7 @@
 					},
 					"response": [
 						{
-							"id": "64d9601f-bebe-4536-b4ee-cdeea3dc227d",
+							"id": "80f2fcad-5b6d-4b5c-a494-dedf1c2535a6",
 							"name": "Current User",
 							"originalRequest": {
 								"method": "GET",
@@ -725,7 +725,7 @@
 					},
 					"response": [
 						{
-							"id": "6aaa0d19-9e9e-4885-a53c-2bcc1766298d",
+							"id": "e01000f9-58ec-486b-b157-846d1eb5e9f4",
 							"name": "Profile",
 							"originalRequest": {
 								"method": "GET",
@@ -893,13 +893,13 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "{{apiUrl}}/articles/whats-new-md3sfb",
+							"raw": "{{apiUrl}}/articles/{{SLUG}}",
 							"host": [
 								"{{apiUrl}}"
 							],
 							"path": [
 								"articles",
-								"whats-new-md3sfb"
+								"{{SLUG}}"
 							]
 						},
 						"description": ""
@@ -956,13 +956,13 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "{{apiUrl}}/articles/whats-new-md3sfb",
+							"raw": "{{apiUrl}}/articles/{{SLUG}}",
 							"host": [
 								"{{apiUrl}}"
 							],
 							"path": [
 								"articles",
-								"whats-new-md3sfb"
+								"{{SLUG}}"
 							]
 						},
 						"description": ""
@@ -1024,16 +1024,145 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"article\": {\n\t\t\"body\": \"A bit more\"\n\t}\n}"
+							"raw": "{\n\t\"article\": {\n\t\t\"body\": \"A little bit more\"\n\t}\n}"
 						},
 						"url": {
-							"raw": "{{apiUrl}}/articles/whats-new-md3sfb",
+							"raw": "{{apiUrl}}/articles/{{SLUG}}",
 							"host": [
 								"{{apiUrl}}"
 							],
 							"path": [
 								"articles",
-								"whats-new-md3sfb"
+								"{{SLUG}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Article",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{apiUrl}}/articles/{{SLUG}}",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"articles",
+								"{{SLUG}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"description": "",
+			"item": [
+				{
+					"name": "All Comments for an Article",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{apiUrl}}/articles/{{SLUG}}/comments",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"articles",
+								"{{SLUG}}",
+								"comments"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Comment for Article",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"comment\": {\n\t\t\"body\": \"My awesome comment\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{apiUrl}}/articles/{{SLUG}}/comments",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"articles",
+								"{{SLUG}}",
+								"comments"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment for Article",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{apiUrl}}/articles/{{SLUG}}/comments/18",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"articles",
+								"{{SLUG}}",
+								"comments",
+								"18"
 							]
 						},
 						"description": ""
