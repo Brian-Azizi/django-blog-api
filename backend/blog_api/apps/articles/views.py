@@ -15,7 +15,7 @@ class ArticleViewSet(mixins.CreateModelMixin,
                      viewsets.GenericViewSet):
     lookup_field = 'slug'
     queryset = Article.objects.select_related('author', 'author__user')
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly)
     renderer_classes = (ArticleJSONRenderer,)
     serializer_class = ArticleSerializer
 
@@ -47,6 +47,7 @@ class ArticleViewSet(mixins.CreateModelMixin,
         except Article.DoesNotExist:
             raise NotFound('An article with this slug does not exist.')
 
+        self.check_object_permissions(request, serializer_instance)
         serializer_data = request.data.get('article', {})
         serializer = self.serializer_class(
             serializer_instance, data=serializer_data, partial=True
