@@ -19,6 +19,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
+    url(r'^api/', include('blog_api.apps.articles.urls', namespace='articles')),
     url(r'^api/', include('blog_api.apps.authentication.urls',
                           namespace='authentication')),
     url(r'^api/', include('blog_api.apps.profiles.urls', namespace='profiles')),
