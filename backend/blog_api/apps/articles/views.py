@@ -99,9 +99,11 @@ class CommentsDestroyAPIView(generics.DestroyAPIView):
 
     def destroy(self, request, article_slug=None, comment_pk=None):
         try:
-            comment = Comment.objects.get(pk=comment_pk)
+            comment = Comment.objects.filter(
+                article__slug=article_slug).get(pk=comment_pk)
         except Comment.DoesNotExist:
-            raise NotFound('A comment with this ID does not exist.')
+            raise NotFound(
+                'A comment with this ID does not exist for this Article.')
 
         self.check_object_permissions(request, comment)
 

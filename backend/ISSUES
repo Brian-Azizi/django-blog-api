@@ -1,3 +1,5 @@
-- Only author's of comments should be able to delete them
+- Only author's of comments should be able to delete the   DONE.
+- Only authors of articles should be to update them.
+- No destroy endpoint for articles
 - Registration and Login Views do not return Bio and Image
 - createdAt and updatedAt do not return in correct ISO format
