@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .models import Article, Comment
+from .permissions import IsAuthorOrReadOnly
 from .renderers import ArticleJSONRenderer, CommentJSONRenderer
 from .serializers import ArticleSerializer, CommentSerializer
 
@@ -93,7 +94,7 @@ class CommentsListCreateAPIView(generics.ListCreateAPIView):
 
 class CommentsDestroyAPIView(generics.DestroyAPIView):
     lookup_url_kwarg = 'comment_pk'
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly,)
     queryset = Comment.objects.all()
 
     def destroy(self, request, article_slug=None, comment_pk=None):
@@ -101,6 +102,8 @@ class CommentsDestroyAPIView(generics.DestroyAPIView):
             comment = Comment.objects.get(pk=comment_pk)
         except Comment.DoesNotExist:
             raise NotFound('A comment with this ID does not exist.')
+
+        self.check_object_permissions(request, comment)
 
         comment.delete()
 
