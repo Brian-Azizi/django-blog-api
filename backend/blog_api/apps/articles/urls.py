@@ -12,5 +12,5 @@ router.register(r'articles', ArticleViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^articles/(?P<article_slug>[-\w]+)/comments/?$',
-        CommentsListCreateAPIView.as_view())
+        CommentsListCreateAPIView.as_view()),
 ]
