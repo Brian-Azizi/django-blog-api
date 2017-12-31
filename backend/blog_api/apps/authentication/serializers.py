@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 
@@ -76,7 +77,7 @@ class UserSerializer(serializers.ModelSerializer):
     # We want to get the `bio` and `image` fields from the related Profile
     # model.
     bio = serializers.CharField(source='profile.bio', read_only=True)
-    image = serializers.CharField(source='profile.image', read_only=True)
+    image = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -91,6 +92,11 @@ class UserSerializer(serializers.ModelSerializer):
         # `max_length` properties, but that isn't the case for the token
         # field.
         read_only_fields = ('token',)
+
+    def get_image(self, obj):
+        if obj.profile.image:
+            return obj.profile.image
+        return settings.DEFAULT_IMAGE_URL
 
     def update(self, instance, validated_data):
         """Performs an update on a User."""

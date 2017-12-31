@@ -140,3 +140,5 @@ REST_FRAMEWORK = {
         'blog_api.apps.authentication.backends.JWTAuthentication',
     ),
 }
+
+DEFAULT_IMAGE_URL = 'https://static.productionready.io/images/smiley-cyrus.jpg'
