@@ -1,0 +1,3 @@
+- Only author's of comments should be able to delete them
+- Registration and Login Views do not return Bio and Image
+- createdAt and updatedAt do not return in correct ISO format
