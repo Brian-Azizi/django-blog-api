@@ -1,4 +1,5 @@
 from rest_framework import mixins, status, viewsets
+from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -33,7 +34,7 @@ class ArticleViewSet(mixins.CreateModelMixin,
         try:
             serializer_instance = self.queryset.get(slug=slug)
         except Article.DoesNotExist:
-            raise
+            raise NotFound('An article with this slug does not exist.')
 
         serializer = self.serializer_class(serializer_instance)
 
