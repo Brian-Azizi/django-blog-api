@@ -1,19 +1,15 @@
 from rest_framework import serializers
 
+from blog_api.apps.core.serializers import TimestampedModelSerializer
 from blog_api.apps.profiles.serializers import ProfileSerializer
 
-from .models import Article
+from .models import Article, Comment
 
 
-class ArticleSerializer(serializers.ModelSerializer):
+class ArticleSerializer(TimestampedModelSerializer):
     author = ProfileSerializer(read_only=True)
     description = serializers.CharField(required=False)
     slug = serializers.SlugField(required=False)
-
-    # The client expects `created_at` to be called `createdAt`
-    # and `updated_at` to be `updatedAt`.
-    createdAt = serializers.SerializerMethodField(method_name='get_created_at')
-    updatedAt = serializers.SerializerMethodField(method_name='get_updated_at')
 
     class Meta:
         model = Article
@@ -32,8 +28,24 @@ class ArticleSerializer(serializers.ModelSerializer):
 
         return Article.objects.create(author=author, **validated_data)
 
-    def get_created_at(self, instance):
-        return instance.created_at.isoformat()
 
-    def get_updated_at(self, instance):
-        return instance.updated_at.isoformat()
+class CommentSerializer(TimestampedModelSerializer):
+    author = ProfileSerializer(required=False)
+
+    class Meta:
+        model = Comment
+        fields = (
+            'id',
+            'author',
+            'body',
+            'createdAt',
+            'updatedAt',
+        )
+
+    def create(self, validated_data):
+        article = self.context['article']
+        author = self.context['author']
+
+        return Comment.objects.create(
+            author=author, article=article, **validated_data
+        )
