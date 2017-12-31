@@ -1,0 +1,1046 @@
+{
+	"info": {
+		"name": "Django Blog API",
+		"_postman_id": "ab343e0d-e6aa-6a6f-fef7-925c713bc3b8",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"description": "",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe96ab04-f8c9-4097-bc4b-b95f1e669a21",
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									"tests['Response contains \"user\" property'] = response.hasOwnProperty('user');",
+									"",
+									"var user = response.user || {}",
+									"",
+									"tests['User has \"email\" property'] = user.hasOwnProperty('email');",
+									"tests['User has \"username\" property'] = user.hasOwnProperty('username');",
+									"tests['User has \"token\" property'] = user.hasOwnProperty('token');",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n      \"email\": \"{{EMAIL}}\",\n      \"password\": \"{{PASSWORD}}\",\n      \"username\": \"{{USERNAME}}\"\n  }\n}\n"
+						},
+						"url": {
+							"raw": "{{apiUrl}}/users",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "67b0dcec-316d-411a-9baf-afdc2ae6f032",
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": {\n      \"email\": \"{{EMAIL}}\",\n      \"password\": \"{{PASSWORD}}\",\n      \"username\": \"{{USERNAME}}\"\n  }\n}\n"
+								},
+								"url": {
+									"raw": "{{apiUrl}}/users",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS",
+									"name": "Allow",
+									"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Dec 2017 14:14:21 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.4",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "TqxuAblnyeZxx3dgYjZiHWmrC56tW27T7WMUdwKntr4pkoRmso",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "oFcDKWmDuJMUEPe0bI93lzMSoRK72NnMxf1UxS6Q8t880wvTmc",
+									"key": "PAN-SESSION"
+								}
+							],
+							"responseTime": 104,
+							"body": "{\"email\":\"brianazizi7@gmail.com\",\"username\":\"Corvo\",\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjoxNTE5NTY4MDYxfQ.B7Qfchsy-z7Bkvo_N6PMyrNmcTHI3aF0Wcn5aUiXBGQ\"}"
+						},
+						{
+							"id": "d43522d4-8ddc-448c-9a0e-5ffe0af08581",
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": false
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": {\n      \"email\": \"b{{EMAIL}}\",\n      \"password\": \"{{PASSWORD}}\",\n      \"username\": \"b{{USERNAME}}\"\n  }\n}\n"
+								},
+								"url": {
+									"raw": "{{apiUrl}}/users",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS",
+									"name": "Allow",
+									"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+								},
+								{
+									"key": "Content-Length",
+									"value": "195",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Dec 2017 17:40:06 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.4",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "TqxuAblnyeZxx3dgYjZiHWmrC56tW27T7WMUdwKntr4pkoRmso",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "oFcDKWmDuJMUEPe0bI93lzMSoRK72NnMxf1UxS6Q8t880wvTmc",
+									"key": "PAN-SESSION"
+								}
+							],
+							"responseTime": 96,
+							"body": "{\"user\": {\"email\": \"bbrianazizi7@gmail.com\", \"username\": \"bCorvo\", \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NywiZXhwIjoxNTE5NTgwNDA2fQ.kaJvADotZIlYuJbDF8d9XQDAwnfX0vNLSfUP278mIZ0\"}}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "71734d0a-375e-49ec-8ad1-c3d195a95bbe",
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									"tests['Response contains \"user\" property'] = response.hasOwnProperty('user');",
+									"",
+									"var user = response.user || {}",
+									"",
+									"tests['User has \"email\" property'] = user.hasOwnProperty('email');",
+									"tests['User has \"username\" property'] = user.hasOwnProperty('username');",
+									"tests['User has \"token\" property'] = user.hasOwnProperty('token');",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n      \"email\": \"{{EMAIL}}\",\n      \"password\": \"{{PASSWORD}}\"\n  }\n}\n"
+						},
+						"url": {
+							"raw": "{{apiUrl}}/users/login",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "7422a2c2-2f7a-49af-a12a-3ed68ba08528",
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": false
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user\": {\n      \"email\": \"{{EMAIL}}\",\n      \"password\": \"{{PASSWORD}}\"\n  }\n}\n"
+								},
+								"url": {
+									"raw": "{{apiUrl}}/users/login",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS",
+									"name": "Allow",
+									"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+								},
+								{
+									"key": "Content-Length",
+									"value": "193",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Dec 2017 18:05:19 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.4",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "TqxuAblnyeZxx3dgYjZiHWmrC56tW27T7WMUdwKntr4pkoRmso",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "oFcDKWmDuJMUEPe0bI93lzMSoRK72NnMxf1UxS6Q8t880wvTmc",
+									"key": "PAN-SESSION"
+								}
+							],
+							"responseTime": 83,
+							"body": "{\"user\": {\"email\": \"brianazizi7@gmail.com\", \"username\": \"Corvo\", \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjoxNTE5NTgxOTE5fQ.CstY4ODaStMbiKBIuUUjubdsYhcdugWmbeKuyN0aCBA\"}}"
+						}
+					]
+				},
+				{
+					"name": "Current User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{apiUrl}}/user/",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "64d9601f-bebe-4536-b4ee-cdeea3dc227d",
+							"name": "Current User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{apiUrl}}/user/",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"user",
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Allow",
+									"value": "GET, PUT, PATCH, HEAD, OPTIONS",
+									"name": "Allow",
+									"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Dec 2017 20:40:23 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.4",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "TqxuAblnyeZxx3dgYjZiHWmrC56tW27T7WMUdwKntr4pkoRmso",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "oFcDKWmDuJMUEPe0bI93lzMSoRK72NnMxf1UxS6Q8t880wvTmc",
+									"key": "PAN-SESSION"
+								}
+							],
+							"responseTime": 20,
+							"body": "{\"user\": {\"detail\": \"Authentication credentials were not provided.\"}}"
+						}
+					]
+				},
+				{
+					"name": "Login and Remember Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4063d75f-ecd0-407b-af0e-30efd28a5939",
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									"tests['Response contains \"user\" property'] = response.hasOwnProperty('user');",
+									"",
+									"var user = response.user || {}",
+									"",
+									"tests['User has \"email\" property'] = user.hasOwnProperty('email');",
+									"tests['User has \"username\" property'] = user.hasOwnProperty('username');",
+									"tests['User has \"token\" property'] = user.hasOwnProperty('token');",
+									"",
+									"if (tests['User has \"token\" property']) {",
+									"    postman.setEnvironmentVariable('token', user.token)",
+									"}",
+									"",
+									"tests['Environment variable \"token\" has been set'] = environment.token === user.token;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n      \"email\": \"{{EMAIL}}\",\n      \"password\": \"{{PASSWORD}}\"\n  }\n}\n"
+						},
+						"url": {
+							"raw": "{{apiUrl}}/users/login",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "72e94701-cdf2-4f16-b228-9cbf717bacc9",
+								"type": "text/javascript",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									"tests['Response contains \"user\" property'] = response.hasOwnProperty('user');",
+									"",
+									"var user = response.user || {}",
+									"",
+									"tests['User has \"email\" property'] = user.hasOwnProperty('email');",
+									"tests['User has \"username\" property'] = user.hasOwnProperty('username');",
+									"tests['User has \"token\" property'] = user.hasOwnProperty('token');",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n      \"username\": \"{{USERNAME}}\",\n      \"email\": \"{{EMAIL}}\",\n      \"password\": \"{{PASSWORD}}\",\n      \"bio\": \"test\"\n  }\n}\n\t"
+						},
+						"url": {
+							"raw": "{{apiUrl}}/user/",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profiles",
+			"description": "",
+			"item": [
+				{
+					"name": "Profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4d9ec9a1-a718-4b53-b63c-d61545e24431",
+								"type": "text/javascript",
+								"exec": [
+									"var is200Response = responseCode.code === 200;",
+									"",
+									"tests['Response code is 200 OK'] = is200Response;",
+									"",
+									"if(is200Response){",
+									"    var responseJSON = JSON.parse(responseBody);",
+									"",
+									"    tests['Response contains \"profile\" property'] = responseJSON.hasOwnProperty('profile');",
+									"    ",
+									"    var profile = responseJSON.profile || {};",
+									"    ",
+									"    tests['Profile has \"username\" property'] = profile.hasOwnProperty('username');",
+									"    tests['Profile has \"bio\" property'] = profile.hasOwnProperty('bio');",
+									"    tests['Profile has \"image\" property'] = profile.hasOwnProperty('image');",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{apiUrl}}/profiles/{{USERNAME}}",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"profiles",
+								"{{USERNAME}}"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "6aaa0d19-9e9e-4885-a53c-2bcc1766298d",
+							"name": "Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Requested-With",
+										"value": "XMLHttpRequest"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "{{apiUrl}}/profiles/{{USERNAME}}",
+									"host": [
+										"{{apiUrl}}"
+									],
+									"path": [
+										"profiles",
+										"{{USERNAME}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Allow",
+									"value": "GET, HEAD, OPTIONS",
+									"name": "Allow",
+									"description": "Valid actions for a specified resource. To be used for a 405 Method not allowed"
+								},
+								{
+									"key": "Content-Length",
+									"value": "115",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 28 Dec 2017 07:36:47 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.4",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN",
+									"name": "X-Frame-Options",
+									"description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "TqxuAblnyeZxx3dgYjZiHWmrC56tW27T7WMUdwKntr4pkoRmso",
+									"key": "XSRF-TOKEN"
+								},
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": false,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "oFcDKWmDuJMUEPe0bI93lzMSoRK72NnMxf1UxS6Q8t880wvTmc",
+									"key": "PAN-SESSION"
+								}
+							],
+							"responseTime": 24,
+							"body": "{\"profile\": {\"username\": \"Corvo\", \"bio\": \"\", \"image\": \"https://avatars2.githubusercontent.com/u/1331728?s=88&v=4\"}}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Articles",
+			"description": "",
+			"item": [
+				{
+					"name": "All Articles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa96644a-bc99-4636-9a7d-0fc0f8a98f4e",
+								"type": "text/javascript",
+								"exec": [
+									"var is200Response = responseCode.code === 200;",
+									"",
+									"tests['Response code is 200 OK'] = is200Response;",
+									"",
+									"if(is200Response){",
+									"    var responseJSON = JSON.parse(responseBody);",
+									"",
+									"    tests['Response contains \"articles\" property'] = responseJSON.hasOwnProperty('articles');",
+									"",
+									"        var article = responseJSON.articles[0];",
+									"console.log(new Date(article.createdAt).toISOString())",
+									"        tests['Article has \"title\" property'] = article.hasOwnProperty('title');",
+									"        tests['Article has \"slug\" property'] = article.hasOwnProperty('slug');",
+									"        tests['Article has \"body\" property'] = article.hasOwnProperty('body');",
+									"        tests['Article has \"createdAt\" property'] = article.hasOwnProperty('createdAt');",
+									"        tests['Article\\'s \"createdAt\" property is an ISO 8601 timestamp'] = new Date(article.createdAt).toISOString() === article.createdAt;",
+									"        tests['Article has \"updatedAt\" property'] = article.hasOwnProperty('updatedAt');",
+									"        tests['Article\\'s \"updatedAt\" property is an ISO 8601 timestamp'] = new Date(article.updatedAt).toISOString() === article.updatedAt;",
+									"        tests['Article has \"description\" property'] = article.hasOwnProperty('description');",
+									"        tests['Article has \"author\" property'] = article.hasOwnProperty('author');",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{apiUrl}}/articles",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"articles"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Single Article by Slug",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{apiUrl}}/articles/whats-new-md3sfb",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"articles",
+								"whats-new-md3sfb"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Articles with authentication",
+			"description": "",
+			"item": [
+				{
+					"name": "All Articles with Auth",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{apiUrl}}/articles",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"articles"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Single Article by Slug",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{apiUrl}}/articles/whats-new-md3sfb",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"articles",
+								"whats-new-md3sfb"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Articles",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"article\": {\n\t\t\"title\": \"What's new?\",\n\t\t\"body\": \"Not much\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{apiUrl}}/articles",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"articles"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Article",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"article\": {\n\t\t\"body\": \"A bit more\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{apiUrl}}/articles/whats-new-md3sfb",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"articles",
+								"whats-new-md3sfb"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
