@@ -21,4 +21,5 @@ urlpatterns = [
 
     url(r'^api/', include('blog_api.apps.authentication.urls',
                           namespace='authentication')),
+    url(r'^api/', include('blog_api.apps.profiles.urls', namespace='profiles')),
 ]
