@@ -13,7 +13,9 @@ class ArticleSerializer(TimestampedModelSerializer):
     slug = serializers.SlugField(required=False)
 
     favorited = serializers.SerializerMethodField()
-    favorites_count = serializers.SerializerMethodField()
+    favoritesCount = serializers.SerializerMethodField(
+        method_name='get_favorites_count'
+    )
 
     tagList = TagRelatedField(many=True, required=False, source='tags')
 
@@ -25,7 +27,7 @@ class ArticleSerializer(TimestampedModelSerializer):
             'createdAt',
             'description',
             'favorited',
-            'favorites_count',
+            'favoritesCount',
             'slug',
             'tagList',
             'title',
