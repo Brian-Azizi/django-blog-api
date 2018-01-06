@@ -14,6 +14,10 @@ class Article(TimestampedModel):
         'profiles.Profile', on_delete=models.CASCADE, related_name='articles'
     )
 
+    tags = models.ManyToManyField(
+        'articles.Tag', related_name='articles'
+    )
+
     def __str__(self):
         return self.title
 
