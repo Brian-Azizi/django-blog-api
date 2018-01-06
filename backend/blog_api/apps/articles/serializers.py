@@ -67,3 +67,12 @@ class CommentSerializer(TimestampedModelSerializer):
         return Comment.objects.create(
             author=author, article=article, **validated_data
         )
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ('tag',)
+
+    def to_representation(self, obj):
+        return obj.tag
