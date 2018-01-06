@@ -3,7 +3,8 @@ from rest_framework import serializers
 from blog_api.apps.core.serializers import TimestampedModelSerializer
 from blog_api.apps.profiles.serializers import ProfileSerializer
 
-from .models import Article, Comment
+from .models import Article, Comment, Tag
+from .relations import TagRelatedField
 
 
 class ArticleSerializer(TimestampedModelSerializer):
@@ -13,6 +14,8 @@ class ArticleSerializer(TimestampedModelSerializer):
 
     favorited = serializers.SerializerMethodField()
     favorites_count = serializers.SerializerMethodField()
+
+    tagList = TagRelatedField(many=True, required=False, source='tags')
 
     class Meta:
         model = Article
@@ -24,6 +27,7 @@ class ArticleSerializer(TimestampedModelSerializer):
             'favorited',
             'favorites_count',
             'slug',
+            'tagList',
             'title',
             'updatedAt',
         )
@@ -31,7 +35,14 @@ class ArticleSerializer(TimestampedModelSerializer):
     def create(self, validated_data):
         author = self.context.get('author', None)
 
-        return Article.objects.create(author=author, **validated_data)
+        tags = validated_data.pop('tags', [])
+
+        article = Article.objects.create(author=author, **validated_data)
+
+        for tag in tags:
+            article.tags.add(tag)
+
+        return article
 
     def get_favorited(self, instance):
         request = self.context.get('request', None)
