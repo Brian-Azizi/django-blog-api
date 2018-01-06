@@ -11,6 +11,9 @@ class ArticleSerializer(TimestampedModelSerializer):
     description = serializers.CharField(required=False)
     slug = serializers.SlugField(required=False)
 
+    favorited = serializers.SerializerMethodField()
+    favorites_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Article
         fields = (
@@ -18,6 +21,8 @@ class ArticleSerializer(TimestampedModelSerializer):
             'body',
             'createdAt',
             'description',
+            'favorited',
+            'favorites_count',
             'slug',
             'title',
             'updatedAt',
@@ -28,6 +33,19 @@ class ArticleSerializer(TimestampedModelSerializer):
 
         return Article.objects.create(author=author, **validated_data)
 
+    def get_favorited(self, instance):
+        request = self.context.get('request', None)
+
+        if request is None:
+            return False
+
+        if not request.user.is_authenticated:
+            return False
+
+        return request.user.profile.has_favorited(instance)
+
+    def get_favorites_count(self, instance):
+        return instance.favorited_by.count()
 
 class CommentSerializer(TimestampedModelSerializer):
     author = ProfileSerializer(required=False)
