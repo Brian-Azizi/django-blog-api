@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'django_extensions',
     'rest_framework',
+    'corsheaders',
 
     'blog_api.apps.articles',
     'blog_api.apps.authentication',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -144,3 +146,7 @@ REST_FRAMEWORK = {
 }
 
 DEFAULT_IMAGE_URL = 'https://static.productionready.io/images/smiley-cyrus.jpg'
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000'
+)
